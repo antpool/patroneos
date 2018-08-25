@@ -2,10 +2,10 @@ package main
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-	"strconv"
 )
 
 var filterTotal = prometheus.NewCounterVec(

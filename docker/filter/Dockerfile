@@ -1,7 +1,9 @@
 FROM golang:alpine as builder
 
-ADD . /repo 
-RUN cd /repo && go build -o patroneosd *.go 
+RUN apk add --no-cache git
+
+ADD . /repo
+RUN cd /repo && go get -d && go build -o patroneosd *.go
 
 FROM alpine:3.7
 

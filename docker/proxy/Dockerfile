@@ -1,7 +1,9 @@
 FROM golang:stretch as builder
 
+RUN apk add --no-cache git
+
 ADD . /repo
-RUN cd /repo && go build -o patroneosd *.go
+RUN cd /repo && go get -d && go build -o patroneosd *.go
 
 FROM haproxy:1.8
 
