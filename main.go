@@ -142,6 +142,8 @@ func main() {
 		os.Exit(1)
 	}
 
+	addMetricsHandlers(mux)
+
 	go func() {
 		configMux := http.NewServeMux()
 		configMux.HandleFunc("/patroneos/config", updateConfig)

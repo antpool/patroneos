@@ -19,3 +19,6 @@ main
 
 # dist folder containing compiled Binaries
 dist/**/*
+
+# idea
+.idea

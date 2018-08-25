@@ -75,6 +75,8 @@ func logFailure(message string, w http.ResponseWriter, r *http.Request, statusCo
 		statusCode = 400
 	}
 
+	incFilterTotal(statusCode, r.URL.String())
+
 	remoteHost := getHost(r)
 	for _, logAgent := range appConfig.LogEndpoints {
 		if !strings.Contains(logAgent, "/patroneos/fail2ban-relay") {
@@ -337,6 +339,7 @@ func forwardCallToNodeos(w http.ResponseWriter, r *http.Request) {
 
 	if res.StatusCode == 200 {
 		logSuccess("SUCCESS", r)
+		incFilterTotal(200, r.URL.String())
 	} else {
 		logFailure("TRANSACTION_FAILED", nil, r, 0)
 	}
